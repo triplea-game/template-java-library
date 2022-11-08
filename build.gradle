@@ -1,13 +1,32 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'io.freefair.lombok' version '6.5.1'
+    id 'com.diffplug.spotless' version '6.11.0'
 }
 
+
+apply plugin: 'java'
+apply plugin: 'pmd'
+apply plugin: 'maven-publish'
+apply plugin: 'io.freefair.lombok'
+apply plugin: 'com.diffplug.spotless'
+
 group = 'org.triplea'
-version = '0.0.0'
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+def revisionCount() {
+    ['sh', '-c', 'git rev-list --count HEAD'].execute().text.trim()
+}
+version = "1.0." + revisionCount()
 
 jar {
-    archivesBaseName = 'org.triplea.maps-client'
+    archivesBaseName = 'org.triplea.[UPDATE-ME-repo-name]'
+}
+
+repositories {
+    mavenCentral()
 }
 
 publishing {
@@ -28,3 +47,28 @@ publishing {
     }
 }
 
+
+test {
+    useJUnitPlatform()
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+        removeUnusedImports()
+        endWithNewline()
+        indentWithSpaces()
+        trimTrailingWhitespace()
+    }
+}
+
+pmd {
+    consoleOutput = true
+    ruleSetFiles = files(rootProject.file('pmd.xml'))
+    ruleSets = []
+    incrementalAnalysis = true
+}
+
+dependencies {
+
+}
