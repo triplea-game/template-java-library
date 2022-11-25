@@ -1,5 +1,5 @@
 name: PR Checks
-on: [push, pull_request]
+on: [push]
 jobs:
   code_check:
     runs-on: ubuntu-latest
