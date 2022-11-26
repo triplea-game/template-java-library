@@ -2,6 +2,12 @@
 
 [UPDATE ME - quick "elevator pitch" description of repo]
 
+Use this template for repositories that create 'jar' files as an output.
+Configured in this template are github actions to publish a jar file
+to github packages on every merge to master.
+
+Take note the version number is specified in 'build.gradle' and should
+be updated there according to 'semver'.
 
 ## How to build
 
