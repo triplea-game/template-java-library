@@ -9,10 +9,6 @@
 ./gradlew check
 ```
 
-## How to Run
-
-[UPDATE ME]
-
 ## New Repo Checklist
 
 After creating a new repository with this template:

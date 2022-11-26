@@ -24,6 +24,10 @@ repositories {
     mavenCentral()
 }
 
+shadowJar {
+    classifier = ''
+}
+
 publishing {
     repositories {
         maven {
@@ -36,12 +40,14 @@ publishing {
         }
     }
     publications {
-        shadow(MavenPublication) { publication ->
-            project.shadow.component(publication)
+        shadow(MavenPublication) {
+            artifact shadowJar
+            pom {
+                packaging 'jar'
+            }
         }
     }
 }
-
 
 test {
     useJUnitPlatform()
